@@ -1,11 +1,14 @@
-def get_all_subsets(s):
+from typing import List
+
+
+def get_all_subsets(s: List[int]) -> List[List[int]]:
     if len(s) == 0:
         return [[]]
     subsets = get_all_subsets(s[1:])
     return subsets + [[s[0]] + subset for subset in subsets]
 
 
-def get_all_subsets_bitwise(s):
+def get_all_subsets_bitwise(s: List[int]) -> List[List[int]]:
     n = len(s)
     subsets = []
     for i in range(1 << n):
@@ -20,19 +23,13 @@ def get_all_subsets_bitwise(s):
 """
     Code Testing
 """
+if __name__ == "__main__":
+    # get_all_subsets
+    print("Test get all subsets")
+    # Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
+    print(get_all_subsets([1, 2, 3]))
 
-#get_all_subsets
-print("Test get all subsets")
-
-# Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
-
-print(get_all_subsets([1, 2, 3]))
-
-
-
-#get_all_subsets_bitwise
-print("Test get all subsets bitwise")
-
-# Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
-
-print(get_all_subsets_bitwise([1, 2, 3]))
+    # get_all_subsets_bitwise
+    print("Test get all subsets bitwise")
+    # Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
+    print(get_all_subsets_bitwise([1, 2, 3]))
