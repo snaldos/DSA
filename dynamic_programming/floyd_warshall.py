@@ -20,9 +20,14 @@ def floyd_warshall(graph):
     for k in range(n):
         for i in range(n):
             for j in range(n):
+
                 # adjacent vertices don't need to be checked
+                # if i == j, dist[i][j] = min(0, dist[i][k] + dist[k][j]) - remains the same (0)
+                # if j == k, dist[i][j] = min(dist[i][j], dist[i][j] + 0) - remains the same (dist[i][j])
+                # if i == k, dist[i][j] = min(dist[i][j], 0 + dist[i][j]) - remains the same (dist[i][j])
                 if i == j or j == k or i == k:
                     continue
+
                 # If the distance from i to j through k is less than the current distance, update it
                 dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
