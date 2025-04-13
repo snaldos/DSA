@@ -21,7 +21,9 @@ def floyd_warshall(graph):
         for i in range(n):
             for j in range(n):
 
-                # adjacent vertices don't need to be checked
+                # Optimization: skipping cases where updates are guaranteed to be no-ops
+                # (Optional: classic Floyd–Warshall doesn't skip these)
+
                 # if i == j, dist[i][j] = min(0, dist[i][k] + dist[k][j]) - remains the same (0)
                 # if j == k, dist[i][j] = min(dist[i][j], dist[i][j] + 0) - remains the same (dist[i][j])
                 # if i == k, dist[i][j] = min(dist[i][j], 0 + dist[i][j]) - remains the same (dist[i][j])
@@ -29,6 +31,9 @@ def floyd_warshall(graph):
                     continue
 
                 # If the distance from i to j through k is less than the current distance, update it
+                # using the already assigned distances of adjacent vertices to k
                 dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+                # since we only use the already assigned distances of adjacent vertices to k to compare to the current distance, we can use a 2D array instead of a 3D array
 
     return dist
