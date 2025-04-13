@@ -1,6 +1,6 @@
 from typing import Dict, List, Tuple
 
-from subsets import get_all_subsets
+from brute_force.subsets import get_all_subsets
 
 
 def knapsack01(
@@ -40,43 +40,9 @@ def fractional_knapsack(
             selected_items.append({item[0]: (item[1][0], item[1][1])})
             capacity -= item[1][1]
         else:
-            total_value += item[1][2] * capacity
-            selected_items.append({item[0]: (item[1][0], capacity)})
+            fractional_value = item[1][2] * capacity
+            total_value += fractional_value
+            selected_items.append({item[0]: (fractional_value, capacity)})
             capacity = 0
 
     return total_value, selected_items
-
-
-"""Code Testing
-"""
-
-
-if __name__ == "__main__":
-    # KnapSack 0/1
-    # Example usage:
-    items = {
-        "item1": (3, 2),  # (value, weight)
-        "item2": (4, 3),
-        "item3": (5, 4),
-        "item4": (6, 5),
-    }
-    capacity = 5
-
-    max_value, selected_items = knapsack01(items, capacity)
-
-    print("Maximum Value:", max_value)
-    print("Items Selected:", selected_items)
-
-    # Fractional KnapSack
-    # Example usage:
-    items = {
-        "item1": (60, 10),
-        "item 2": (100, 20),
-        "item 3": (120, 30),
-    }  # (value, weight)
-    capacity = 50
-
-    max_value, selected_items = fractional_knapsack(items, capacity)
-
-    print("Maximum Value:", max_value)
-    print("Items Selected:", selected_items)

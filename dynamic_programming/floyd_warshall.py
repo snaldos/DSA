@@ -20,8 +20,10 @@ def floyd_warshall(graph):
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                # Ensure no invalid updates when paths involve INF
-                if dist[i][k] != float("inf") and dist[k][j] != float("inf"):
-                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+                # adjacent vertices don't need to be checked
+                if i == j or j == k or i == k:
+                    continue
+                # If the distance from i to j through k is less than the current distance, update it
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
     return dist

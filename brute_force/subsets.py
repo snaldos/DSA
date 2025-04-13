@@ -18,18 +18,3 @@ def get_all_subsets_bitwise(s: List[int]) -> List[List[int]]:
                 subset.append(s[j])
         subsets.append(subset)
     return subsets
-
-
-"""
-    Code Testing
-"""
-if __name__ == "__main__":
-    # get_all_subsets
-    print("Test get all subsets")
-    # Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
-    print(get_all_subsets([1, 2, 3]))
-
-    # get_all_subsets_bitwise
-    print("Test get all subsets bitwise")
-    # Expected Output: [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
-    print(get_all_subsets_bitwise([1, 2, 3]))
