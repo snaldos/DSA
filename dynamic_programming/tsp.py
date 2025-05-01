@@ -45,7 +45,11 @@ def tsp(graph):
 
 
 if __name__ == "__main__":
-    graph = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]
+    graph = [
+        [0, 4, 1],  # From city 0 to 1 = 4, to 2 = 1
+        [2, 0, 5],  # From city 1 to 0 = 2, to 2 = 5
+        [3, 1, 0],  # From city 2 to 0 = 3, to 1 = 1
+    ]
     cost, path = tsp(graph)
     print(f"Minimum cost: {cost}")
     print(f"Path: {path}")
