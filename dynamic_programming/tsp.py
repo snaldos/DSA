@@ -21,8 +21,10 @@ def tsp(graph):
                 cost = graph[pos][city] + _tsp(city, new_visited)
                 if cost < min_cost:
                     min_cost = cost
-                    parent[pos][visited] = city  # store decision
+                    # Stores which next city gave the optimal path from (pos, visited)
+                    parent[pos][visited] = city
 
+        # Caches the minimum cost from city pos having visited the set visited.
         memo[pos][visited] = min_cost
         return min_cost
 
